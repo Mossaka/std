@@ -1,43 +1,27 @@
 ---
-name: Build and Test
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  issues: read
-  pull-requests: read
 
-engine:
-  id: copilot
-  model: claude-sonnet-4
+engine: copilot
 
 network:
-  firewall: true
   allowed:
     - defaults
+    - node
     - github
-    - deno
+
+safe-outputs:
+  create-issue:
+    max: 1
 ---
 
-# Build and Test Deno Standard Library
+# Build and Test
 
-You are a CI/CD agent. Your job is to build and test this Deno project.
-
-## Steps
-
-1. Check Deno version:
-   ```
-   deno --version
-   ```
-
-2. Run a subset of the test suite (to keep runtime reasonable):
-   ```
-   deno test -A --parallel bytes/ encoding/
-   ```
-
-3. Report the results - if tests pass, indicate success. If they fail, analyze the error output and report what went wrong.
+Explore this repository to understand its structure and purpose. Then build the project and run all tests. Finally, create an issue titled "Build and Test Report" with a detailed summary of:
+- What the project is
+- Build results (success/failure, any errors)
+- Test results (number of tests passed/failed, any error details)
+- Overall assessment of whether the build and tests succeeded
